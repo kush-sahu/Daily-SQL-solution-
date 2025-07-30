@@ -32,7 +32,8 @@ FROM SCOTT.EMP E JOIN SCOTT.EMP M
 ON E.MGR=M.EMPNO
 WHERE M.ENAME='ALICE';
 -- Q7 List all employees who don’t have a manager (i.e., top-level managers).
-SELECT * FROM SCOTT.EMP;
+SELECT * FROM SCOTT.EMP
+WHERE MGR IS NULL;  
 -- Q8 Find employees who don’t manage anyone.
 SELECT E.ENAME AS ENAME, M.ENAME AS MANAME
 FROM SCOTT.EMP E RIGHT OUTER JOIN SCOTT.EMP M
@@ -46,9 +47,9 @@ FROM SCOTT.EMP E JOIN SCOTT.EMP M
 ON E.MGR=M.EMPNO ;
 
 -- Q10 List employees along with their managers, but only for employees working in the HR department.
-SELECT E.ENAME
+SELECT E.ENAME AS ENAME,M.ENAME AS MNAME
 FROM (SCOTT.EMP E JOIN SCOTT.EMP M
 ON E.MGR=M.EMPNO )INNER JOIN SCOTT.DEPT D
 ON E.DEPTNO=D.DEPTNO
-WHERE D.DNAME="HR";
+WHERE D.DNAME='HR';
 
